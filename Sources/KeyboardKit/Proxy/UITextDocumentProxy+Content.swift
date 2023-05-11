@@ -25,5 +25,18 @@ public extension UITextDocumentProxy {
         let after = documentContextAfterInput ?? ""
         return before + after
     }
+
+    var fullText: String? {
+        if self.documentContextBeforeInput.isBlank && self.documentContextAfterInput.isBlank && self.selectedText.isBlank {
+            return nil
+        }
+
+        let text = self.documentContextBeforeInput.unwrap() + self.documentContextAfterInput.unwrap()
+        if text.isEmpty {
+            return self.selectedText
+        }
+
+        return text
+    }
 }
 #endif
