@@ -35,7 +35,11 @@ public extension UITextDocumentProxy {
      set to an `autoInserted` state.
      */
     func insertAutocompleteSuggestion(_ suggestion: AutocompleteSuggestion, tryInsertSpace: Bool = true) {
-        replaceCurrentWord(with: suggestion.text)
+        if fullText.isBlank {
+            insertAtBeginningOfLine((with: suggestion.text)
+        } else {
+            replaceCurrentWord(with: suggestion.text)
+        }
         guard tryInsertSpace else { return }
         tryInsertSpaceAfterAutocomplete()
     }

@@ -105,6 +105,15 @@ public extension UITextDocumentProxy {
         deleteBackward(times: word.count)
         insertText(replacement)
     }
+
+    /**
+     Insert at the beginning of a line.
+     */
+    func insertAtBeginningOfLine(with replacement: String) {
+        let offset = 0
+        adjustTextPosition(byCharacterOffset: offset)
+        insertText(replacement)
+    }
 }
 
 private extension UITextDocumentProxy {
